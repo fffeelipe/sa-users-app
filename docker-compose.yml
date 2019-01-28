@@ -12,8 +12,11 @@ services:
       MYSQL_DATABASE: users
       MYSQL_HOST: users-db
   users-app:
+    environment:
+      MYSQL_HOST: users-db
+      MYSQL_USER: arquisoft
+      MYSQL_PASSWORD: 123
     build: .
-    command: bash -c "sleep 40 && rm -f tmp/pids/server.pid && bundle exec rails db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
     ports:
       - "3000:3000"
     depends_on:
